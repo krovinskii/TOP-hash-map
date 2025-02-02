@@ -35,6 +35,7 @@ class HashMap {
     //Need to account for collision
   }
   get(key) {
+    //takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
     let hashCode = this.hash(key);
     for (let pair of this.buckets[hashCode]) {
       if (pair.key === key) {
@@ -42,7 +43,17 @@ class HashMap {
       }
     }
     console.log("Key not found in get(key)");
-    throw new Error("Key not found in get(key)");
+    return null;
+  }
+  has(key) {
+    // takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
+    let hashCode = this.hash(key);
+    for (let pair of this.buckets[hashCode]) {
+      if (pair.key === key) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 const hash = new HashMap();
