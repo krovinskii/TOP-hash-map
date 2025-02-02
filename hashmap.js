@@ -13,7 +13,7 @@ class HashMap {
   }
 
   hash(key) {
-    //Formula to get our hash code
+    //Formula to get our hash code from TOP
     let hashCode = 0;
     const primeNumber = 31;
 
@@ -32,6 +32,17 @@ class HashMap {
       this.buckets[hashCode] = [];
     }
     this.buckets[hashCode].push({ key, value });
+    //Need to account for collision
+  }
+  get(key) {
+    let hashCode = this.hash(key);
+    for (let pair of this.buckets[hashCode]) {
+      if (pair.key === key) {
+        return pair.value;
+      }
+    }
+    console.log("Key not found in get(key)");
+    throw new Error("Key not found in get(key)");
   }
 }
 const hash = new HashMap();
